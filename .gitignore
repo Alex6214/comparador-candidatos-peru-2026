@@ -1,0 +1,8 @@
+touch .gitignore
+```
+
+Abre `.gitignore` y escribe:
+```
+.streamlit/secrets.toml
+__pycache__/
+.env
