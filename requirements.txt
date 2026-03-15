@@ -1,0 +1,6 @@
+streamlit
+groq
+tavily-python
+requests
+beautifulsoup4
+lxml
