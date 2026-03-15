@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+html,
+body,
+[class*="css"] {
+    font-family: 'Inter', sans-serif;
+}
+
+.header-box {
+    background: linear-gradient(135deg, #C8102E, #D4AF37);
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.header-box h1 {
+    color: white;
+    font-size: clamp(1.4rem, 4vw, 2.2rem);
+    margin: 0;
+}
+
+.header-box p {
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0.5rem 0 0;
+    font-size: clamp(0.8rem, 2vw, 1rem);
+}
+
+.perfil-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 2px solid #e9ecef;
+    margin-bottom: 1rem;
+}
+
+.perfil-nombre {
+    color: #C8102E;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+}
+
+.perfil-partido {
+    color: #6c757d;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+}
+
+.perfil-dato {
+    font-size: 0.85rem;
+    margin-bottom: 0.4rem;
+    color: #343a40;
+}
+
+.perfil-dato strong {
+    color: #C8102E;
+}
+
+.badge-alerta {
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+    border-radius: 8px;
+    padding: 0.35rem 0.75rem;
+    font-size: 0.78rem;
+    color: #856404;
+    display: inline-block;
+    margin: 0.2rem;
+}
+
+.badge-ok {
+    background: #d1e7dd;
+    border: 1px solid #198754;
+    border-radius: 8px;
+    padding: 0.35rem 0.75rem;
+    font-size: 0.78rem;
+    color: #0f5132;
+    display: inline-block;
+    margin: 0.2rem;
+}
+
+.badge-info {
+    background: #cff4fc;
+    border: 1px solid #0dcaf0;
+    border-radius: 8px;
+    padding: 0.35rem 0.75rem;
+    font-size: 0.78rem;
+    color: #055160;
+    display: inline-block;
+    margin: 0.2rem;
+}
+
+.respuesta-box {
+    background: #f0f4ff;
+    border-left: 4px solid #C8102E;
+    border-radius: 0 12px 12px 0;
+    padding: 1.2rem 1.5rem;
+    margin-top: 1rem;
+    font-size: 0.92rem;
+    line-height: 1.7;
+}
+
+.stButton>button {
+    background: #C8102E !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 10px !important;
+    padding: 0.6rem 1.5rem !important;
+    font-weight: 600 !important;
+    width: 100%;
+}
+
+.stButton>button:hover {
+    background: #a00d24 !important;
+}
+
+footer {
+    visibility: hidden;
+}
+
+@media (max-width: 640px) {
+    .header-box {
+        padding: 1.2rem;
+    }
+
+    .perfil-card {
+        padding: 1rem;
+    }
+}
