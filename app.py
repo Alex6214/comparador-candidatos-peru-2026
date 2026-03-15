@@ -3,7 +3,7 @@ from config.candidatos import CANDIDATOS
 from services.ia_service import cargar_perfil, consultar_ia
 from services.search_service import buscar_info
 from components.perfil_card import mostrar_perfil
-from services.feedback_service import guardar_feedback
+from services.feedback_service import guardar_feedback, get_sheet
 
 # ── Configuracion ────────────────────────────────────────────────
 st.set_page_config(
@@ -40,7 +40,11 @@ st.markdown("""
 
 st.success(
     f"✅ {len(CANDIDATOS) - 1} candidatos oficiales inscritos ante el JNE")
-
+# Muestra error de conexion con Google si existe
+try:
+    get_sheet()
+except Exception as e:
+    st.error(f"Error conexion Google Sheets: {e}")
 # ── Tabs ─────────────────────────────────────────────────────────
 tab1, tab2 = st.tabs(["🔍 Perfil y consulta", "⚖️ Comparar candidatos"])
 

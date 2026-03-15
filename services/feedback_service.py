@@ -41,6 +41,8 @@ def get_sheet():
 
 def guardar_feedback(nombre: str, comentario: str, voto: str):
     try:
+        # Limpia el cache para forzar reconexion
+        get_sheet.clear()
         sheet = get_sheet()
         fecha = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         sheet.append_row([fecha, nombre, comentario, voto])
