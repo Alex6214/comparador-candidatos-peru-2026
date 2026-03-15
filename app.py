@@ -3,6 +3,7 @@ from config.candidatos import CANDIDATOS
 from services.ia_service import cargar_perfil, consultar_ia
 from services.search_service import buscar_info
 from components.perfil_card import mostrar_perfil
+from services.feedback_service import guardar_feedback
 
 # ── Configuracion ────────────────────────────────────────────────
 st.set_page_config(
@@ -167,7 +168,53 @@ with tab2:
                             with st.expander("Ver fuentes"):
                                 for f in fuentes:
                                     st.markdown(f)
+# ── Seccion de feedback ──────────────────────────────────────────
+st.markdown("---")
+st.markdown("### ¿Qué te pareció esta página?")
 
+# Guardamos los datos en session_state para no perderlos
+# session_state es como una memoria temporal de la sesión del usuario
+if "feedback_enviado" not in st.session_state:
+    st.session_state.feedback_enviado = False
+
+if not st.session_state.feedback_enviado:
+
+    nombre_fb = st.text_input(
+        "Tu nombre",
+        placeholder="Ej: María García",
+        key="nombre_feedback"
+    )
+
+    comentario_fb = st.text_input(
+        "Tu comentario",
+        placeholder="¿Qué mejorarías? ¿Qué te gustó?",
+        key="comentario_feedback"
+    )
+
+    st.markdown("**¿Te fue útil esta página?**")
+    col_v1, col_v2, col_v3 = st.columns([1, 1, 4])
+
+    with col_v1:
+        voto_si = st.button("👍 Sí", key="voto_si")
+    with col_v2:
+        voto_no = st.button("👎 No", key="voto_no")
+
+    # Validamos que haya escrito su nombre antes de guardar
+    if voto_si or voto_no:
+        if not nombre_fb.strip():
+            st.warning("Por favor escribe tu nombre antes de enviar.")
+        else:
+            voto = "👍 Sí" if voto_si else "👎 No"
+            exito = guardar_feedback(nombre_fb, comentario_fb, voto)
+            if exito:
+                st.session_state.feedback_enviado = True
+                st.rerun()
+            else:
+                st.error("No se pudo guardar, intenta de nuevo.")
+
+else:
+    # Una vez enviado mostramos mensaje y no dejamos enviar de nuevo
+    st.success("¡Gracias por tu feedback! Tu opinión nos ayuda a mejorar 🙏")
 # ── Footer ───────────────────────────────────────────────────────
 st.markdown("---")
 st.markdown("""

@@ -6,3 +6,5 @@ Abre `.gitignore` y escribe:
 .streamlit/secrets.toml
 __pycache__/
 .env
+
+echo ".streamlit/google_credentials.json" >> .gitignore
