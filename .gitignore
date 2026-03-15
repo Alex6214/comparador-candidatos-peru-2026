@@ -1,10 +1,4 @@
-touch .gitignore
-```
-
-Abre `.gitignore` y escribe:
-```
 .streamlit/secrets.toml
+.streamlit/google_credentials.json
 __pycache__/
 .env
-
-echo ".streamlit/google_credentials.json" >> .gitignore
