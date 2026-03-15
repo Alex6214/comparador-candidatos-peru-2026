@@ -37,5 +37,6 @@ def guardar_feedback(nombre: str, comentario: str, voto: str):
         sheet.append_row([fecha, nombre, comentario, voto])
         return True
     except Exception as e:
-        print(f"Error al guardar feedback: {e}")
+        # Mostramos el error exacto en pantalla para saber qué falla
+        st.error(f"Error detallado: {e}")
         return False
