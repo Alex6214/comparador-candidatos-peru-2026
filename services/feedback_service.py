@@ -13,15 +13,24 @@ SCOPES = [
 @st.cache_resource
 def get_sheet():
     try:
-        # Intenta leer desde el archivo JSON local (desarrollo en tu Mac)
         credenciales = Credentials.from_service_account_file(
             ".streamlit/google_credentials.json",
             scopes=SCOPES
         )
     except Exception:
-        # Si no encuentra el archivo lee desde Streamlit Cloud secrets
+        # Lee desde secrets de Streamlit Cloud
+        info = {
+            "type": st.secrets["google_credentials"]["type"],
+            "project_id": st.secrets["google_credentials"]["project_id"],
+            "private_key_id": st.secrets["google_credentials"]["private_key_id"],
+            "private_key": st.secrets["google_credentials"]["private_key"].replace("\\n", "\n"),
+            "client_email": st.secrets["google_credentials"]["client_email"],
+            "client_id": st.secrets["google_credentials"]["client_id"],
+            "auth_uri": st.secrets["google_credentials"]["auth_uri"],
+            "token_uri": st.secrets["google_credentials"]["token_uri"],
+        }
         credenciales = Credentials.from_service_account_info(
-            dict(st.secrets["google_credentials"]),
+            info,
             scopes=SCOPES
         )
 
@@ -35,8 +44,6 @@ def guardar_feedback(nombre: str, comentario: str, voto: str):
         sheet = get_sheet()
         fecha = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         sheet.append_row([fecha, nombre, comentario, voto])
-        return True
+        return True, None
     except Exception as e:
-        # Mostramos el error exacto en pantalla para saber qué falla
-        st.error(f"Error detallado: {e}")
-        return False
+        return False, str(e)

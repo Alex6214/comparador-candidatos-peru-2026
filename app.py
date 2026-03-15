@@ -205,12 +205,12 @@ if not st.session_state.feedback_enviado:
             st.warning("Por favor escribe tu nombre antes de enviar.")
         else:
             voto = "👍 Sí" if voto_si else "👎 No"
-            exito = guardar_feedback(nombre_fb, comentario_fb, voto)
+            exito, error = guardar_feedback(nombre_fb, comentario_fb, voto)
             if exito:
                 st.session_state.feedback_enviado = True
                 st.rerun()
             else:
-                st.error("No se pudo guardar, intenta de nuevo.")
+                st.error(f"Error: {error}")
 
 else:
     # Una vez enviado mostramos mensaje y no dejamos enviar de nuevo
