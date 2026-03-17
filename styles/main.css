@@ -6,6 +6,11 @@ body,
     font-family: 'Inter', sans-serif;
 }
 
+/* Forzar modo light siempre */
+:root {
+    color-scheme: light only;
+}
+
 .header-box {
     background: linear-gradient(135deg, #C8102E, #D4AF37);
     padding: 2rem;
